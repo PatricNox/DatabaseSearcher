@@ -23,7 +23,7 @@ It's **highly** recommended to **never** use this project in a release as it is 
 > SQL Injections can destroy your whole server/website!
 
 ## Usage
-See the [Example.php](Example.php) for a usage example.
+See the [Example.php](example.php) for a usage example.
 
 ## Modifications
 Like your tools designed? Feel free to edit the style/markup in the ./dbsearcher folder.
