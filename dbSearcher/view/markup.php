@@ -5,7 +5,7 @@
     <input type="text" placeholder="searching for.." name="dbs-search">
     <input type="text" placeholder="in database" name="dbs-database">
     <input type="submit" value="Search">
-    <h3 style="float: right; color: red;"><a href="https://github.com/PatricNox">Noxies</a></h3>
+    <h3 style="float: right; color: red;"><a href="https://github.com/PatricNox">PatricNox</a></h3>
   </form>
   <?php if (!$QueryFound ):?>
     <p>
