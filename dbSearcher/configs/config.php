@@ -3,9 +3,9 @@
 /* Database Connection Credentials */
 /***********************************/
 
- $hostname  = '127.0.0.1';    // The IP or DNS where the database server is located
- $username  = 'root';         // Username for login to the database server
- $password  = '';         // Password for login to the database server
+ $hostname  = '';    // The IP or DNS where the database server is located
+ $username  = '';    // Username for login to the database server
+ $password  = '';    // Password for login to the database server
 
  /* Core Settings /*
  /*****************/
