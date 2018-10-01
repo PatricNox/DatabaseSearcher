@@ -13,10 +13,6 @@
             <?php endif; ?>
 
             <?php if ($QueryFound && $search): ?>
-                <?php
-                    print_r($QueryFound);
-                    print_r($search);
-                ?>
                 <h2 class="mt-5">Results</h2>
 
                 <table class="table table-bordered">
