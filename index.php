@@ -25,7 +25,9 @@
 	</form>
 	<?php if (!$QueryFound ):?>
 		<p>More accurate search words = better results!<br><br><br>
-		If you need to change your database config, check out "dbSearcher/configs/config.php"</p>
+		<a href="setup.php">
+			<div class="clearfix"><input class="float-r" type="submit" value="Setup Database"></div>
+		</a>
 	<?php endif; ?>
 	<?php if($search): ?>
 		<h2>Searched for: "<?php echo $search; ?>" in (<?php echo $database?>)</h2>
