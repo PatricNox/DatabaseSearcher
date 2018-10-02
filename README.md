@@ -16,7 +16,7 @@ Project is intended for large database users who desires a fast way to find thei
 ![Alt text](https://i.imgur.com/pbazNIy.png)
 
 ## Setup
-Clone/Download the repository and extract the files wherever you please. Visit dbsearcher/configs/config.php and configure the connection to your MySQL database.
+Clone/Download the repository and extract the files wherever you please. Visit setup.php to enter and configure the connection to your MySQL database.
 
 It's **highly** recommended to **never** use this project in a release as it is **not** safe from SQL Injections.
 

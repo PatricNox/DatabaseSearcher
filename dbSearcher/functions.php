@@ -9,8 +9,7 @@ if (isset($_POST['dbs-database'], $_POST['dbs-search']))
 
 // Database harvest 
 function dbs_search($search, $database){
-    include __DIR__."/configs/config.php";
-    $mysqli = new mysqli($hostname, $username, $password, $database);
+    $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, $database);
     $results = array();
     $sql = "show tables";
     $rs = $mysqli->query($sql);
