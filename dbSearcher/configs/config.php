@@ -1,11 +1,11 @@
 <?php
-
+	
 /* Database Connection Credentials */
 /***********************************/
 
- $hostname  = 'localhost';    // The IP or DNS where the database server is located
- $username  = 'root';         // Username for login to the database server
- $password  = 'root';         // Password for login to the database server
+define('DB_HOST', 'localhost');         // The IP or DNS where the database server is located
+define('DB_USER', 'root');         // Username for login to the database server
+define('DB_PASS', 'root');         // Password for login to the database server
 
  /* Core Settings /*
  /*****************/
