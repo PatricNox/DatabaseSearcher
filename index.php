@@ -10,9 +10,7 @@
 
 	// Initialise dbSearcher
 	$QueryFound = false;
-    require('dbSearcher/dbSearcher.php'); 
 	include_once('dbsearcher/header.php');
-	$dbSearcher = new dbSearcher();
 	
 	// Check if there are inputs
 	if (isset($_POST['dbs-database'], $_POST['dbs-search']))
