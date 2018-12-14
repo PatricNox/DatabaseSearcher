@@ -1,7 +1,7 @@
 	<form action='#' method='POST' class="clearfix">
 		<div>
 			<input class="float-l" style="width: 50%;" type="text" placeholder="searching for.." name="dbs-search">
-			<input class="float-r" style="width: 50%;" type="text" placeholder="in database" name="dbs-database">
+			<input class="float-r" style="width: 50%;" type="text" placeholder="in database" name="dbs-database" value='<?=(!empty($_SESSION['database'])) ? $_SESSION['database'] : ''?>'>
 		</div>
 		<br />
 		<br />

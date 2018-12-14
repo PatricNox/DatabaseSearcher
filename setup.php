@@ -1,4 +1,8 @@
 <?php 
+    // Reset session.
+	session_start();
+	session_destroy(); 
+
 	include_once('dbSearcher/header.php');
 	
 	$file_result = false;

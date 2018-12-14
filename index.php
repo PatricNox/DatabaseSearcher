@@ -8,15 +8,13 @@
 	*
 	*/
 
-	// Initialise dbSearcher
 	$QueryFound = false;
 	include_once('dbsearcher/header.php');
-	
 	// Check if there are inputs
 	if (isset($_POST['dbs-database'], $_POST['dbs-search']))
 	{
 	    $search = $_POST['dbs-search'];
-	    $database = $_POST['dbs-database'];
+		$_SESSION['database'] = $database = $_POST['dbs-database'];
 	    $QueryFound = $dbSearcher->dbs_search($search, $_POST['dbs-database']);
 	}
 
