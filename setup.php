@@ -1,17 +1,18 @@
 <?php 
-	include_once('header.php');
+	include_once('dbSearcher/header.php');
 	
 	$file_result = false;
-	
-	if(isset($_POST['submit_creds'])){
+
+	if (isset($_POST['submit_creds'])) {
 		$file_result = $dbSearcher->set_config($_POST['hostname'], $_POST['username'], $_POST['password']);
 	}
 ?>
-<?php if($file_result !== FALSE){ ?><script type="text/javascript">window.location = '/index.php';</script><?php } ?>
+<?php if ($file_result !== FALSE){ ?><script type="text/javascript">window.location = '/index.php';</script><?php } ?>
+
 <div class="container">
     <div class="form-container">
         <h1>Database Searcher Setup</h1>
-        <form method="post">
+        <form method="post" action="./setup.php">
 	        <div class="field-group">
 		        <label>Hostname:</label>
 		        <input type="text" id="hostname" name="hostname" />
@@ -30,4 +31,5 @@
         </form>
     </div>
 </div>
-<?php include_once('footer.php'); ?>
+
+<?php include_once('dbSearcher/footer.php'); ?>
