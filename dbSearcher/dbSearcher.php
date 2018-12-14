@@ -21,7 +21,7 @@
 			}
 		}
 		
-		function set_config($hostname, $username, $password)
+		function set_config($hostname, $username, $password, $port)
 		{
 			$config_code = "
 			<?php
@@ -31,6 +31,7 @@
 				define('DB_HOST', '" . $hostname . "');         // The IP or DNS where the database server is located
 				define('DB_USER', '" . $username . "');         // Username for login to the database server
 				define('DB_PASS', '" . $password . "');         // Password for login to the database server
+				define('DB_PORT', '" . $port     . "');         // Database Port
 
 				/* Core Settings /*
 				/*****************/
@@ -44,7 +45,7 @@
 		// Database harvest 
 		function dbs_search($search, $database)
 		{
-			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, $database);
+			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, $database, (int)DB_PORT);
 			$results = array();
 			$sql = "show tables";
 			$rs = $mysqli->query($sql);
