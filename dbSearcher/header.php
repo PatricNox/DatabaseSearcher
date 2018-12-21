@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html>
     <head>
         <title>Database Searcher</title>
@@ -9,7 +10,6 @@
 	<h3 class="float-r" style="color: red;"><a href="https://github.com/PatricNox">PatricNox</a></h3>
 	<h1>Database Searcher</h1>
     <?php 
-    	session_start();
         require('dbSearcher/dbSearcher.php'); 
         $dbSearcher = new dbSearcher();
         
