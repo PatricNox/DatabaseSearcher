@@ -13,10 +13,11 @@
 	{	
 		public function __construct()
 		{
-			include_once(__DIR__.'/configs/config.php');
+			if (file_exists(__DIR__.'/configs/config.php'))
+				include_once(__DIR__.'/configs/config.php');
 			
 			if (($_SERVER['REQUEST_URI'] != '/setup.php') && (!file_exists(__DIR__.'/configs/config.php') || (!defined('DB_HOST') || !defined('DB_USER') || !defined('DB_PASS')))){
-		
+
 				header('Location: /setup.php');
 			}
 		}
