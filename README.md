@@ -26,4 +26,4 @@ It's **highly** recommended to **never** use this project in a release as it is 
 
 ## License
 
-[GNU](LICENSE) © [PatricNox](https://PatricNox.info)
+[GPL-3.0](LICENSE) © [PatricNox](https://PatricNox.info)
