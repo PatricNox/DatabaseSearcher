@@ -14,7 +14,9 @@
         $dbSearcher = new dbSearcher();
         
         // instantiate DB session, later usage.
-        if (!isset($_SESSION['database'])) 
+        if (!isset($_SESSION['database'], $_SESSION['query'])) {
             $_SESSION['database'] = array();
+            $_SESSION['query']    = array();
+        }
 
     ?>
