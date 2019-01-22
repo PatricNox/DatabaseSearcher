@@ -7,28 +7,23 @@ Project is intended for large database users who desires a fast way to find thei
 
 [TrueWoW Community](https://www.truewow.org "TrueWoW Community")
 
-[Noxies.info](http://Noxies.info/ "Noxies Portfolio")
-
 > Want to be in this very cool list? Make a Pull Request!
 
 
 ## Preview
-![Alt text](https://i.imgur.com/pbazNIy.png)
+![Alt text](https://i.imgur.com/n8xZq50.png)
 
 ## Setup
-Clone/Download the repository and extract the files wherever you please. Visit setup.php to enter and configure the connection to your MySQL database.
+Clone/Download the repository and extract the files in your webserver www directory.
+Upon first visit you'll be prompted to fill in database credentials, and that's it!
 
 It's **highly** recommended to **never** use this project in a release as it is **not** safe from SQL Injections.
 
 > SQL Injections can destroy your whole server/website!
 
-## Usage
-See the [Example.php](example.php) for a usage example.
-
-## Modifications
-Like your tools designed? Feel free to edit the style/markup in the ./dbsearcher folder.
-
-> If you manage to do something cool, feel free to make a pull request!
-
 # Thank You!
 > "What am i living for, if not for you?" - Johnny Preston
+
+## License
+
+[GNU](LICENSE) © [PatricNox](https://PatricNox.info)
