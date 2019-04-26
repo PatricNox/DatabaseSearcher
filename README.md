@@ -7,6 +7,10 @@ Project is intended for large database users who desires a fast way to find thei
 
 [TrueWoW Community](https://www.truewow.org "TrueWoW Community")
 
+[Kodamera AB](https://www.kodamera.se "Kodamera Webbyrå")
+
+
+
 > Want to be in this very cool list? Make a Pull Request!
 
 
