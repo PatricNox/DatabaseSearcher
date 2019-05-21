@@ -4,6 +4,18 @@
         <title>Database Searcher</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/styles.css" />
+        <script>
+            function copy(element){
+                let query = document.querySelectorAll("#query");
+                let temp = query[element].innerHTML;
+                let copyQuery = document.createElement("textarea");
+                copyQuery.value = temp;
+                document.body.appendChild(copyQuery);
+                copyQuery.select();
+                document.execCommand("copy");
+                document.body.removeChild(copyQuery);
+            }
+	</script>
     </head>
     <body>
     <div id="db-wrapper">
