@@ -26,13 +26,13 @@
 				<th>Results</th>
 				<th>Select Query</th>
 			</tr>
-			<?php $Querys=0; foreach ($QueryFound as $result): ?>
+			<?php $QueryId=0; foreach ($QueryFound as $result): ?>
 				<tr>
 					<td><?=$result['table'];?></td>
 					<td><?=$result['hits'];?></td>
 					<td id="query">SELECT * FROM <?=$result['table'];?> WHERE <?=$result['from'];?>;</td>
-					<td><button onclick="copy(<?=$Querys?>)">Copy</button></td>
+					<td><button onclick="copy(<?=$QueryId?>)">Copy</button></td>
 				</tr>
-			<?php $Querys++; endforeach;?>
+			<?php $QueryId++; endforeach;?>
 		</table>
 	<?php endif; ?>

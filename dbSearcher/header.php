@@ -5,13 +5,19 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="css/styles.css" />
         <script>
-            function copy(element){
-                let query = document.querySelectorAll("#query");
-                let temp = query[element].innerHTML;
+            function copy(QueryId){
+                // Get all the querys made.
+                let querys = document.querySelectorAll("#query");
+
+                // Extract ours.
+                let temp = querys[QueryId].innerHTML;
+
+                // Create new element, temporarily, for being abled to select it.
                 let copyQuery = document.createElement("textarea");
                 copyQuery.value = temp;
-                document.body.appendChild(copyQuery);
-                copyQuery.select();
+                document.body.appendChild(copyQuery).select();
+
+                // Copy content to clipboard and then delete the new field.
                 document.execCommand("copy");
                 document.body.removeChild(copyQuery);
             }
