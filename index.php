@@ -16,7 +16,9 @@
 	    $search = $_POST['dbs-search'];
 		$_SESSION['query'] = $_POST['dbs-search'];
 		$_SESSION['database'] = $database = $_POST['dbs-database'];
-	    $QueryFound = $dbSearcher->dbs_search($search, $_POST['dbs-database']);
+		$strict = ($_POST['dbs-strict']) ? TRUE : FALSE;
+
+	    $QueryFound = $dbSearcher->dbs_search($search, $_POST['dbs-database'], $strict);
 	}
 
 	// Load view

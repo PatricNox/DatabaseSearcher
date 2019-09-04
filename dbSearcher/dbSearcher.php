@@ -44,7 +44,7 @@
 		}
 		
 		// Database harvest 
-		function dbs_search($search, $database)
+		function dbs_search($search, $database, $strict = FALSE)
 		{
 			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, $database, (int)DB_PORT);
 			$results = array();
@@ -63,7 +63,8 @@
 					if ($rs2->num_rows > 0) {
 						while ($r2 = $rs2->fetch_array()){
 							$column = $r2[0];
-							$sql_search_fields[] = $column." LIKE('%".$search."%')";
+							$sql_search_fields[] = $column." = ".$search;
+							// $sql_search_fields[] = $column." LIKE('%".$search."%')";
 						}
 						
 						$rs2->close();
@@ -90,7 +91,11 @@
 						
 						// Use column for the outputting SELECT-section on page
 						foreach ($columnmatches as $columnheader) {
-							$columnoutput .= $columnheader . ' LIKE "%'.$search.'%" OR ';
+							if ($strict)
+								$columnoutput .= $columnheader . ' = ' . $search;
+
+							else
+								$columnoutput .= $columnheader . ' LIKE "%'.$search.'%" OR ';
 						}
 									
 						$columnoutput = substr($columnoutput, 0, -3); // Remove the last trailing "OR" in the output
