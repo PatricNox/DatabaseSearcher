@@ -63,8 +63,11 @@
 					if ($rs2->num_rows > 0) {
 						while ($r2 = $rs2->fetch_array()){
 							$column = $r2[0];
-							$sql_search_fields[] = $column." = ".$search;
-							// $sql_search_fields[] = $column." LIKE('%".$search."%')";
+
+							if ($strict)
+								$sql_search_fields[] = $column." = ".$search;
+							else 
+								$sql_search_fields[] = $column." LIKE('%".$search."%')";
 						}
 						
 						$rs2->close();
@@ -91,11 +94,7 @@
 						
 						// Use column for the outputting SELECT-section on page
 						foreach ($columnmatches as $columnheader) {
-							if ($strict)
-								$columnoutput .= $columnheader . ' = ' . $search;
-
-							else
-								$columnoutput .= $columnheader . ' LIKE "%'.$search.'%" OR ';
+							$columnoutput .= $columnheader . ' LIKE "%'.$search.'%" OR ';
 						}
 									
 						$columnoutput = substr($columnoutput, 0, -3); // Remove the last trailing "OR" in the output
