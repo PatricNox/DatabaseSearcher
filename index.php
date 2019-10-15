@@ -9,7 +9,7 @@
 	*/
 
 	$QueryFound = false;
-	include_once('dbsearcher/header.php');
+	include_once('dbSearcher/header.php');
 	// Check if there are inputs
 	if (isset($_POST['dbs-database'], $_POST['dbs-search']))
 	{
@@ -22,5 +22,5 @@
 	}
 
 	// Load view
-	include_once('dbsearcher/template.php');
-	include_once('dbsearcher/footer.php');
+	include_once('dbSearcher/template.php');
+	include_once('dbSearcher/footer.php');
