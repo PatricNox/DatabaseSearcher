@@ -9,7 +9,7 @@
 		<div class="clearfix">
 		<div class="strict float-r">
       <label for="dbs-strict">Find exact match</label>
-      <?php $checkbox_attributes = $strict? 'checked': '' ?>
+      <?php $checkbox_attributes = (isset($strict) && $strict)? 'checked': '' ?>
       <input type="checkbox" name="dbs-strict" id="dbs-strict" value="TRUE" <?php echo $checkbox_attributes; ?>/>	
 		</div>
     </div>
