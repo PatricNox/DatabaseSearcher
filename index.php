@@ -13,7 +13,7 @@
 	// Check if there are inputs
 	if (isset($_POST['dbs-database'], $_POST['dbs-search']))
 	{
-    $search = $_POST['dbs-search'];
+		$search = $_POST['dbs-search'];
 		$_SESSION['query'] = $_POST['dbs-search'];
 		$_SESSION['database'] = $database = $_POST['dbs-database'];
 		$strict = (isset($_POST['dbs-strict'])) ? TRUE : FALSE;
