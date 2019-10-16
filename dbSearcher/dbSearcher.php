@@ -76,7 +76,7 @@
 					$sql_search .= implode(" OR ", $sql_search_fields);
 					$rs3 = $mysqli->query($sql_search);
 				
-					if ($rs3->num_rows > 0) {
+					if ($rs3 && $rs3->num_rows > 0) {
 						foreach ($rs3 as $row) {
 							$columnheaders = array_keys($row);
 							$counter = 0; // Used to count at which field we are
