@@ -8,12 +8,11 @@
 		<br />
 		<div class="clearfix">
 		<div class="strict float-r">
-			<p >
-				Find exact match?
-			</p>
-			<input type="checkbox" name="dbs-strict" value="TRUE" />	
+      <label for="dbs-strict">Find exact match</label>
+			<input type="checkbox" name="dbs-strict" id="dbs-strict" value="TRUE" />	
 		</div>
-		<input class="float-r" type="submit" value="Search"></div>
+    </div>
+		<input class="float-r" type="submit" value="Search">
 	</form>
 	<?php if (!$QueryFound ):?>
 		<p>More accurate search words = better results!<br><br><br>

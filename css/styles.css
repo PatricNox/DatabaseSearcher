@@ -82,3 +82,7 @@ input[type="submit"]{
 	display: table;
 	clear: both;
 }
+
+.strict {
+  margin: 10px 0;
+}

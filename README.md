@@ -4,7 +4,7 @@ Basic Web-Development PHP tool to search for a string in your **MySQL/MariaDB** 
 Project is intended for large database users who desires a fast way to find their specific search in a database.
 
 ## Preview
-![Alt text](https://i.imgur.com/n8xZq50.png)
+![Alt text](https://i.imgur.com/AzJKnhB.png)
 
 
 ### Usage Scenarios (Real life Events)
