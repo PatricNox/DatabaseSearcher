@@ -10,18 +10,18 @@
 	*/
 
 	class dbSearcher
-	{	
+	{
 		public function __construct()
 		{
 			if (file_exists(__DIR__.'/configs/config.php'))
 				include_once(__DIR__.'/configs/config.php');
-			
+
 			if (($_SERVER['REQUEST_URI'] != '/setup.php') && (!file_exists(__DIR__.'/configs/config.php') || (!defined('DB_HOST') || !defined('DB_USER') || !defined('DB_PASS')))){
 
 				header('Location: /setup.php');
 			}
 		}
-		
+
 		function set_config($hostname, $username, $password, $port)
 		{
 			$config_code = "
@@ -36,76 +36,74 @@
 
 				/* Core Settings /*
 				/*****************/
-				
+
 				// Execution time for queries
 				ini_set('max_execution_time', 300); // 5 minutes";
 
 			return file_put_contents('dbSearcher/configs/config.php', $config_code);
 		}
-		
-		// Database harvest 
+
+		// Database harvest
 		function dbs_search($search, $database, $strict = FALSE)
 		{
+			// Return an empty array, if $search or $database is missing
+			if (empty($search) || empty($database)) {
+				return [];
+			}
+
 			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, $database, (int)DB_PORT);
 			$results = array();
-			$sql = "show tables";
-			$rs = $mysqli->query($sql);
-			
-			if ($rs->num_rows > 0){
-				while ($r = $rs->fetch_array()){
-					$table = $r[0];
-					$columnHeaders = array(); // Storage for headers
-					$columnmatches = array(); // Storage for Matches
-					$sql_search = "SELECT * FROM ".$table." WHERE ";
-					$sql_search_fields = array();
-					$sql2 = "SHOW COLUMNS FROM ".$table;
-					$rs2 = $mysqli->query($sql2);
-					if ($rs2->num_rows > 0) {
-						while ($r2 = $rs2->fetch_array()){
-							$column = $r2[0];
+			$tables_rs = $mysqli->query("show tables");
+			// For each table
+			while ($tables_result = $tables_rs->fetch_array(MYSQLI_NUM)){
+				// Get table name
+				$table = $tables_result[0];
+				// Fetch all column names
+				$columns_rs = $mysqli->query("SHOW COLUMNS FROM `$table`");
+				// Initialize the final query
+				$query = "SELECT * FROM `$table` WHERE ";
+				$conditions_arr = [];
+				$pattern = '';
+				// For each table column
+				while ($column_result = $columns_rs->fetch_assoc()) {
+					$column_name = $column_result['Field'];
+					// Search for pattern
+					if ($strict) {
+						$pattern = "'$search'";
+					}
+					else {
+						$pattern = "'%$search%'";
+					}
 
-							if ($strict)
-								$sql_search_fields[] = $column." = ".$search;
-							else 
-								$sql_search_fields[] = $column." LIKE('%".$search."%')";
-						}
-						
-						$rs2->close();
-					}
-					
-					$sql_search .= implode(" OR ", $sql_search_fields);
-					$rs3 = $mysqli->query($sql_search);
-				
-					if ($rs3 && $rs3->num_rows > 0) {
-						foreach ($rs3 as $row) {
-							$columnheaders = array_keys($row);
-							$counter = 0; // Used to count at which field we are
-		
-							foreach ($row as $columnfield) {
-								if (strpos(strtoupper($columnfield), strtoupper($search)) !== false) 
-									$columnmatches[] = $columnheaders[$counter];
-								$counter++;
-							}
-						}
-						
-						// Cleanse array from duplicates
-						$columnmatches = array_unique($columnmatches);
-						$columnoutput = "";
-						
-						// Use column for the outputting SELECT-section on page
-						foreach ($columnmatches as $columnheader) {
-							$columnoutput .= $columnheader . ' LIKE "%'.$search.'%" OR ';
-						}
-									
-						$columnoutput = substr($columnoutput, 0, -3); // Remove the last trailing "OR" in the output
-						$results[] = array('table' => $table, 'hits' => $rs3->num_rows, 'from' => $columnoutput);
-						$rs3->close();
-					}
+					$conditions_arr[] = "$column_name LIKE $pattern";
 				}
-		
-				$rs->close();
+				// We don't need this connection anymore
+				$columns_rs->close();
+
+				// Finalize the query
+				$query .= implode(" OR ", $conditions_arr);
+				$query_rs = $mysqli->query($query);
+				// For each matched row
+				$matched_columns = [];
+				while ($match = $query_rs->fetch_array(MYSQLI_ASSOC)) {
+					// Get the columns that have the actual match
+					foreach($match as $column_name => $value_name) {
+						// Check it '$search' exists inside '$value'
+						if (stripos($value_name, $search) !== FALSE) {
+							$matched_columns[$column_name] = $column_name;
+						}
+					}
+					// Contruct the query that fetches only the matches columns.
+					// This is shown to the user
+					$q = implode(" LIKE $pattern OR ", $matched_columns) . " LIKE $pattern";
+					// Contstruct the $results array.
+					// We use the table name as an array key, to make the contents of the array unique.
+					$results[$table] = array('table' => $table, 'hits' => $query_rs->num_rows, 'from' => $q);
+				}
 			}
-		
+			// We don't need this connection anymore
+			$tables_rs->close();
+
 			return $results;
 		}
 	}
