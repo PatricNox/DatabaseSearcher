@@ -8,7 +8,7 @@
 	$file_result = false;
 
 	if (isset($_POST['submit_creds'])) {
-		// 3306 default port
+		// 3306 default port.
 		if (empty($_POST['port']))
 			$_POST['port'] = 3306;
 
