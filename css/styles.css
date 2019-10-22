@@ -53,36 +53,53 @@ input[type="submit"]{
 }
 
 #db-wrapper {
-	margin: 0 auto; 
-	margin-top: 18px; 
-	width: 70%; 
-	min-height: 400px; 
-	height: auto;
-	background: #fff; 
-	padding: 1.5em;
+    margin: 0 auto;
+    margin-top: 18px;
+    width: 70%;
+    min-height: 400px;
+    height: auto;
+    background: #fff;
+    padding: 1.5em;
     box-shadow: #a9a9a9 0 0 10px 0;
     border-radius: 5px;
 }
 
 #db-wrapper table, th, td {
-	border: 2px solid #000;
-	border-collapse: collapse;
+    border: 1px solid #000;
+    border-collapse: collapse;
 }
 
 .float-l{
-	float: left;
+    float: left;
 }
 
 .float-r{
-	float: right;
+    float: right;
 }
 
 .clearfix:after {
-	content: "";
-	display: table;
-	clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .strict {
-  margin: 10px 0;
+    margin: 10px 0;
+}
+
+th {
+    background-color: #deeaf9;
+    padding: 5px 10px;
+}
+
+td {
+    padding: 0 5px;
+}
+
+td.table, td.hits, td.query {
+    font-family: monospace;
+}
+
+td.hits {
+    text-align: right;
 }

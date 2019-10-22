@@ -30,14 +30,15 @@
 			<h2>Query Results:</h2>
 			<tr>
 				<th>Table</th>
-				<th>Results</th>
+				<th>Matches</th>
 				<th>Select Query</th>
+				<th></th>
 			</tr>
 			<?php $QueryId=0; foreach ($QueryFound as $result): ?>
 				<tr>
-					<td><?=$result['table'];?></td>
-					<td><?=$result['hits'];?></td>
-					<td id="query">SELECT * FROM <?=$result['table'];?> WHERE <?=$result['from'];?>;</td>
+					<td class="table"><?=$result['table'];?></td>
+					<td class="hits"><?=$result['hits'];?></td>
+					<td class="query" id="query">SELECT * FROM <?=$result['table'];?> WHERE <?=$result['from'];?>;</td>
 					<td><button onclick="copy(<?=$QueryId?>)">Copy</button></td>
 				</tr>
 			<?php $QueryId++; endforeach;?>
