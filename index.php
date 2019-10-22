@@ -13,10 +13,11 @@
 	// Check if there are inputs
 	if (isset($_POST['dbs-database'], $_POST['dbs-search']))
 	{
-	    $search = $_POST['dbs-search'];
+		$search = $_POST['dbs-search'];
 		$_SESSION['query'] = $_POST['dbs-search'];
 		$_SESSION['database'] = $database = $_POST['dbs-database'];
-		$strict = ($_POST['dbs-strict']) ? TRUE : FALSE;
+		$strict = !empty($_POST['dbs-strict']) ? TRUE : FALSE;
+		$_SESSION['strict'] = $strict;
 
 	    $QueryFound = $dbSearcher->dbs_search($search, $_POST['dbs-database'], $strict);
 	}
