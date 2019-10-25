@@ -87,7 +87,7 @@
 				$query_rs = $mysqli->query($query);
 				// For each matched row.
 				$matched_columns = [];
-				if ($match = $query_rs->fetch_array(MYSQLI_ASSOC)) {
+				if ($query_rs && $match = $query_rs->fetch_array(MYSQLI_ASSOC)) {
 					// Get the columns that have the actual match.
 					foreach ($match as $column_name => $value_name) {
 						// Check it '$search' exists inside '$value'.
