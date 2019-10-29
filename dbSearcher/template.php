@@ -8,11 +8,11 @@
 		<br />
 		<div class="clearfix">
 		<div class="strict float-r">
-      <label for="dbs-strict">Find exact match</label>
-      <?php $checkbox_attributes = !empty($_SESSION['strict'])? 'checked': '' ?>
-      <input type="checkbox" name="dbs-strict" id="dbs-strict" value="TRUE" <?php echo $checkbox_attributes; ?>/>	
+			<label for="dbs-strict">Find exact match</label>
+			<?php $checkbox_attributes = !empty($_SESSION['strict'])? 'checked': '' ?>
+			<input type="checkbox" name="dbs-strict" id="dbs-strict" value="TRUE" <?php echo $checkbox_attributes; ?>/>
 		</div>
-    </div>
+		</div>
 		<input class="float-r" type="submit" value="Search">
 	</form>
 	<?php if (!$QueryFound ):?>
@@ -24,23 +24,23 @@
 	<?php if(isset($search)): ?>
 		<h2>Searched for: "<?=(isset($search)) ?$search:'';?>" in (<?=(isset($database)) ?$database:'';?>)</h2>
 	<?php endif; ?>
-	
+
 	<?php if ($QueryFound && $search): ?>
 		<table align="center">
 			<h2>Query Results:</h2>
 			<tr>
 				<th>Table</th>
 				<th>Matches</th>
-				<th>Select Query</th>
-				<th></th>
+				<th>Select Query (click to copy)</th>
 			</tr>
-			<?php $QueryId=0; foreach ($QueryFound as $result): ?>
+			<?php $idx=0; ?>
+			<?php foreach ($QueryFound as $result): ?>
 				<tr>
 					<td class="table"><?=$result['table'];?></td>
 					<td class="hits"><?=$result['hits'];?></td>
-					<td class="query" id="query">SELECT * FROM <?=$result['table'];?> WHERE <?=$result['from'];?>;</td>
-					<td><button onclick="copy(<?=$QueryId?>)">Copy</button></td>
+					<td class="query" data-idx="<?php echo $idx ?>" onclick="copy(<?php echo $idx ?>)">SELECT * FROM <?=$result['table'];?> WHERE <?=$result['from'];?>;</td>
 				</tr>
-			<?php $QueryId++; endforeach;?>
+				<?php $idx++; ?>
+			<?php endforeach;?>
 		</table>
 	<?php endif; ?>

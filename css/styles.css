@@ -93,7 +93,7 @@ th {
 }
 
 td {
-    padding: 0 5px;
+    padding: 4px 10px;
 }
 
 td.table, td.hits, td.query {
@@ -102,4 +102,18 @@ td.table, td.hits, td.query {
 
 td.hits {
     text-align: right;
+}
+
+td.query {
+  cursor: pointer;
+    background-color: none;
+    -webkit-transition: background-color 200ms linear;
+       -moz-transition: background-color 200ms linear;
+         -o-transition: background-color 200ms linear;
+        -ms-transition: background-color 200ms linear;
+            transition: background-color 200ms linear;
+}
+
+td.query.selected {
+    background-color: #fbdd27;
 }

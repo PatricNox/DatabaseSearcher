@@ -6,20 +6,23 @@
         <link rel="stylesheet" href="css/styles.css" />
         <script>
             function copy(QueryId){
-                // Get all the querys made.
-                let querys = document.querySelectorAll("#query");
-
-                // Extract ours.
-                let temp = querys[QueryId].innerHTML;
+                // Get text of clicked element
+                var td = document.querySelectorAll('[data-idx="' + QueryId+ '"]')[0];
+                var query = td.innerText;
 
                 // Create new element, temporarily, for being abled to select it.
                 let copyQuery = document.createElement("textarea");
-                copyQuery.value = temp;
+                copyQuery.value = query;
                 document.body.appendChild(copyQuery).select();
 
                 // Copy content to clipboard and then delete the new field.
                 document.execCommand("copy");
                 document.body.removeChild(copyQuery);
+
+                td.classList.add('selected');
+                setTimeout(function(){
+                    td.classList.remove('selected');
+                }, 700);
             }
 	</script>
     </head>
