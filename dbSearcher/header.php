@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="css/styles.css" />
         <script>
             function copy(QueryId){
-                // Get text of clicked element
+                // Get text of clicked element.
                 var td = document.querySelectorAll('[data-idx="' + QueryId+ '"]')[0];
                 var query = td.innerText;
 
@@ -33,7 +33,7 @@
     <?php 
         require('dbSearcher/dbSearcher.php'); 
         $dbSearcher = new dbSearcher();
-        
+
         // instantiate DB session, later usage.
         if (!isset($_SESSION['database'], $_SESSION['query'])) {
             $_SESSION['database'] = array();
