@@ -5,12 +5,12 @@
 	* Following file is the base handler and view output.
 	*
 	* @author PatricNox <hello@PatricNox.info>
-	*
 	*/
 
 	$QueryFound = false;
 	include_once('dbSearcher/header.php');
-	// Check if there are inputs
+
+	// Check if there are inputs.
 	if (isset($_POST['dbs-database'], $_POST['dbs-search']))
 	{
 		$search = $_POST['dbs-search'];
@@ -22,6 +22,6 @@
 	    $QueryFound = $dbSearcher->dbs_search($search, $_POST['dbs-database'], $strict);
 	}
 
-	// Load view
+	// Load view.
 	include_once('dbSearcher/template.php');
 	include_once('dbSearcher/footer.php');
