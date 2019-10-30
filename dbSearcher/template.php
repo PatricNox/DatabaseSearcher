@@ -31,7 +31,8 @@
 			<tr>
 				<th>Table</th>
 				<th>Matches</th>
-				<th>Select Query (click to copy)</th>
+				<th>Select Query</th>
+				<th>Actions</th>
 			</tr>
 			<?php $idx=0; ?>
 			<?php foreach ($QueryFound as $result): ?>
@@ -39,6 +40,7 @@
 					<td class="table"><?=$result['table'];?></td>
 					<td class="hits"><?=$result['hits'];?></td>
 					<td class="query" data-idx="<?php echo $idx ?>" onclick="copy(<?php echo $idx ?>)">SELECT * FROM <?=$result['table'];?> WHERE <?=$result['from'];?>;</td>
+					<td class="actions"><button onclick="copy(<?php echo $idx ?>)" >Copy</button></td>
 				</tr>
 				<?php $idx++; ?>
 			<?php endforeach;?>

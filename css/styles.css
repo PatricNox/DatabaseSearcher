@@ -117,3 +117,10 @@ td.query {
 td.query.selected {
 		background-color: #fbdd27;
 }
+td.actions button {
+		border: 1px solid #752929;
+		background: #b71f1f;
+		border-radius: 3px;
+		color: white;
+		padding: 1px 10px;
+}
