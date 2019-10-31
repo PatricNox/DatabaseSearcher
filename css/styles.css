@@ -65,24 +65,62 @@ input[type="submit"]{
 }
 
 #db-wrapper table, th, td {
-	border: 2px solid #000;
-	border-collapse: collapse;
+		border: 1px solid #000;
+		border-collapse: collapse;
 }
 
 .float-l{
-	float: left;
+		float: left;
 }
 
 .float-r{
-	float: right;
+		float: right;
 }
 
 .clearfix:after {
-	content: "";
-	display: table;
-	clear: both;
+		content: "";
+		display: table;
+		clear: both;
 }
 
 .strict {
-  margin: 10px 0;
+		margin: 10px 0;
+}
+
+th {
+		background-color: #deeaf9;
+		padding: 5px 10px;
+}
+
+td {
+		padding: 4px 10px;
+}
+
+td.table, td.hits, td.query {
+		font-family: monospace;
+}
+
+td.hits {
+		text-align: right;
+}
+
+td.query {
+	cursor: pointer;
+		background-color: none;
+		-webkit-transition: background-color 200ms linear;
+			 -moz-transition: background-color 200ms linear;
+				 -o-transition: background-color 200ms linear;
+				-ms-transition: background-color 200ms linear;
+						transition: background-color 200ms linear;
+}
+
+td.query.selected {
+		background-color: #fbdd27;
+}
+td.actions button {
+		border: 1px solid #752929;
+		background: #b71f1f;
+		border-radius: 3px;
+		color: white;
+		padding: 1px 10px;
 }
