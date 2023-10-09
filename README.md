@@ -3,6 +3,8 @@ Basic Web-Development PHP tool to search for a string in your **MySQL/MariaDB** 
 
 Project is intended for large database users who desires a fast way to find their specific search in a database.
 
+> It's **highly** recommended to **never** use this project in a release as it is **not** safe from SQL Injections.
+
 ## Preview
 ![Alt text](https://i.imgur.com/qmgMKOy.png)
 
@@ -16,14 +18,6 @@ Project is intended for large database users who desires a fast way to find thei
 > I'm using a database schema that i'm unfamiliar with, this tool helped me find what I was looking for easily!
 
 > _--**Your** scenario can be written here, make a **pull request**!--_
-
-### Used By
-
-[Kodamera AB](https://www.kodamera.se "Kodamera Webbyrå")
-
-[TrueWoW Community](https://www.truewow.org "TrueWoW Community")
-
-> Want to be in this very cool list? Make a Pull Request!
 
 ## Setup
 Clone/Download the repository and extract the files in your webserver www directory.
