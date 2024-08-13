@@ -55,57 +55,59 @@
 
 			$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, $database, (int)DB_PORT);
 			$results = array();
-			$tables_rs = $mysqli->query("show tables");
+			$tables_rs = $mysqli->query("SHOW TABLES");
+
 			// For each table.
-			while ($tables_result = $tables_rs->fetch_array(MYSQLI_NUM)){
+			while ($tables_result = $tables_rs->fetch_array(MYSQLI_NUM)) {
 				// Get table name.
 				$table = $tables_result[0];
 				// Fetch all column names.
 				$columns_rs = $mysqli->query("SHOW COLUMNS FROM `$table`");
 				// Initialize the final query.
-				$query = "SELECT * FROM `$table` WHERE ";
 				$conditions_arr = [];
-				$pattern = '';
+				$pattern = $strict ? "'$search'" : "'%$search%'";
+
 				// For each table column.
 				while ($column_result = $columns_rs->fetch_assoc()) {
 					$column_name = $column_result['Field'];
 					// Search for pattern.
-					if ($strict) {
-						$pattern = "'$search'";
-					}
-					else {
-						$pattern = "'%$search%'";
-					}
-
-					$conditions_arr[] = "$column_name LIKE $pattern";
+					$conditions_arr[] = "`$column_name` LIKE $pattern";
 				}
 				// We don't need this connection anymore.
 				$columns_rs->close();
 
-				// Finalize the query.
-				$query .= implode(" OR ", $conditions_arr);
-				$query_rs = $mysqli->query($query);
-				// For each matched row.
-				$matched_columns = [];
-				if ($query_rs && $match = $query_rs->fetch_array(MYSQLI_ASSOC)) {
-					// Get the columns that have the actual match.
-					foreach ($match as $column_name => $value_name) {
-						// Check it '$search' exists inside '$value'.
-						if (stripos($value_name, $search) !== FALSE) {
-							$matched_columns[$column_name] = $column_name;
+				// Only proceed if we have conditions to add
+				if (!empty($conditions_arr)) {
+					// Finalize the query.
+					$query = "SELECT * FROM `$table` WHERE " . implode(" OR ", $conditions_arr);
+					$query_rs = $mysqli->query($query);
+
+					// For each matched row.
+					if ($query_rs && $query_rs->num_rows > 0) {
+						$matched_columns = [];
+						while ($match = $query_rs->fetch_array(MYSQLI_ASSOC)) {
+							// Get the columns that have the actual match.
+							foreach ($match as $column_name => $value_name) {
+								// Check if '$search' exists inside '$value_name'.
+								if (stripos($value_name, $search) !== FALSE) {
+									$matched_columns[$column_name] = $column_name;
+								}
+							}
+						}
+
+						// If we have matched columns, construct the results array.
+						if (!empty($matched_columns)) {
+							$q = implode(" LIKE $pattern OR ", $matched_columns) . " LIKE $pattern";
+							// Construct the $results array.
+							$results[$table] = array('table' => $table, 'hits' => $query_rs->num_rows, 'from' => $q);
 						}
 					}
-					// Contruct the query that fetches only the matches columns.
-					// This is shown to the user.
-					$q = implode(" LIKE $pattern OR ", $matched_columns) . " LIKE $pattern";
-					// Contstruct the $results array.
-					// We use the table name as an array key, to make the contents of the array unique.
-					$results[$table] = array('table' => $table, 'hits' => $query_rs->num_rows, 'from' => $q);
 				}
 			}
 
 			// We don't need this connection anymore.
 			$tables_rs->close();
+			$mysqli->close(); // Make sure to close the MySQL connection
 			return $results;
 		}
 	}
