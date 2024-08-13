@@ -3,7 +3,7 @@ Basic Web-Development PHP tool to search for a string in your **MySQL/MariaDB** 
 
 Project is intended for large database users who desires a fast way to find their specific search in a database.
 
-> It's **highly** recommended to **never** use this project in a release as it is **not** safe from SQL Injections.
+> This is **only** meant to be running on localhost, as it is not safe from SQLi if accessed & configured on a public http.
 
 ## Preview
 ![Alt text](https://i.imgur.com/qmgMKOy.png)
@@ -12,6 +12,8 @@ Project is intended for large database users who desires a fast way to find thei
 ### Usage Scenarios (Real life Events)
 
 > A site got hacked, and I needed to see if there's backdoors inside the database!
+
+> I started a new job, it has a huge database archistructure and I use this tool to find where specific data is stored
 
 > I needed to see if, and where, my webapplication inserted correct data
 
