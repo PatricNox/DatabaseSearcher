@@ -20,6 +20,9 @@ Project is intended for large database users who desires a fast way to find thei
 > _--**Your** scenario can be written here, make a **pull request**!--_
 
 ## Setup
+
+### This is meant to ONLY be runned on your local environment, read below.
+
 Clone/Download the repository and extract the files in your webserver www directory.
 Upon first visit you'll be prompted to fill in database credentials, and that's it!
 
